@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="romenoRestaurantTitle">ROMENO RESTAURANT - Gallery</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/translations.js"></script>
+    <script src="js/language.js"></script>
+    <style>
+        .gallery {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .gallery__title {
+            text-align: center;
+            margin: 6rem 0 3rem;
+            font-size: 3.5rem;
+            color: #fff;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+        
+        .gallery__title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 2px;
+        }
+        
+        .masonry {
+            columns: 1;
+            column-gap: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            padding: 0 1rem;
+        }
+        
+        .masonry__item {
+            break-inside: avoid;
+            margin-bottom: 0;
+            cursor: pointer;
+            aspect-ratio: 1;
+            overflow: hidden;
+        }
+        
+        .masonry__item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .masonry__item img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Lightbox styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox__content {
+            position: relative;
+            max-width: 80%;
+            max-height: 80vh;
+            margin: 0 auto;
+        }
+
+        .lightbox__image {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox__close {
+            position: absolute;
+            top: 20px;
+            right: -70px;
+            color: #303a4d;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid #303a4d;
+            border-radius: 50%;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox__close:hover {
+            background-color: #303a4d;
+            color: #fff;
+        }
+
+        .lightbox__nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #303a4d;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid #303a4d;
+            border-radius: 50%;
+            z-index: 2;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .lightbox__nav:hover {
+            background-color: #303a4d;
+            color: #fff;
+        }
+
+        .lightbox__nav:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .lightbox__prev {
+            left: -70px;
+        }
+
+        .lightbox__next {
+            right: -70px;
+        }
+        
+        @media (max-width: 1440px) {
+            .masonry {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .masonry {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .masonry {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header__container">
+                <a href="index.html" class="header__logo logo">ALP YAPIM</a>
+                <div class="header__navigation">
+                    <div class="header__menu menu">
+                        <nav class="menu__body">
+                            <ul class="menu__list">
+                                <li class="menu__item"><a href="index.html#main" class="menu__link" data-i18n="home">Home</a></li>
+                                <li class="menu__item"><a href="index.html#about" class="menu__link" data-i18n="about">About</a></li>
+                                <li class="menu__item"><a href="index.html#services" class="menu__link" data-i18n="services">Projects</a></li>
+                                <li class="menu__item"><a href="index.html#contact" class="menu__link" data-i18n="contact">Contact</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <main class="page">
+            <section class="gallery">
+                <h1 class="gallery__title" data-i18n="romenoRestaurantTitle">ROMENO RESTAURANT</h1>
+                <div class="masonry">
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/_ZGR9678-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/_ZGR9678-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/_ZGR9696-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/_ZGR9696-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK05856-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK05856-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK05864-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK05864-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK05880-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK05880-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK05892-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK05892-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK05911-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK05911-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK05926-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK05926-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK05929-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK05929-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK05941-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK05941-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK05955-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK05955-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK06005-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK06005-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK06043-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK06043-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK06095-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK06095-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK06106-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK06106-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK06171-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK06171-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK06181-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK06181-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK06232-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK06232-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK06265-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK06265-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK06554-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK06554-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK06555-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK06555-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK06568-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK06568-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK06589-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK06589-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK06668-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK06668-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK06709-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK06709-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK06712-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK06712-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK06771-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK06771-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK06828-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK06828-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/BDK06978-2-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/BDK06978-2.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                    <div class="masonry__item">
+                        <img src="images/optimized/ROMENO RESTAURANT(5)/thumbnails/head-thumb.webp" data-full="images/optimized/ROMENO RESTAURANT(5)/head.webp" alt="ROMENO RESTAURANT">
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer__container">
+                <a href="" class="footer__logo logo">ALP YAPIM</a>
+                <div class="footer__right">
+                    <div class="footer__contact">
+                        <div class="footer__contact-item">
+                            <i>📞</i>
+                            <span data-i18n="phone">+90 123 456 7890</span>
+                        </div>
+                        <div class="footer__contact-item">
+                            <i>✉️</i>
+                            <span data-i18n="email">info@alpyapim.com</span>
+                        </div>
+                        <div class="footer__contact-item">
+                            <i>📍</i>
+                            <span data-i18n="location">Istanbul, Turkey</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="border: none; height: 1px; background-color: rgba(0, 0, 0, 0.5); margin: 1rem 0; width: 80%; margin-left: auto; margin-right: auto;">
+            <div class="footer__copyright" data-i18n="copyright">Copyright © 2025 ALP YAPIM – All Rights Reserved</div>
+        </footer>
+    </div>
+
+    <div class="lightbox">
+        <div class="lightbox__content">
+            <img src="" alt="" class="lightbox__image">
+            <button class="lightbox__close">&times;</button>
+            <button class="lightbox__nav lightbox__prev" aria-label="Previous image">←</button>
+            <button class="lightbox__nav lightbox__next" aria-label="Next image">→</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxImage = document.querySelector('.lightbox__image');
+            const closeButton = document.querySelector('.lightbox__close');
+            const prevButton = document.querySelector('.lightbox__prev');
+            const nextButton = document.querySelector('.lightbox__next');
+            const galleryItems = document.querySelectorAll('.masonry__item');
+            let currentImageIndex = 0;
+
+            // Open lightbox
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    currentImageIndex = index;
+                    const fullImageSrc = item.querySelector('img').getAttribute('data-full');
+                    lightboxImage.src = fullImageSrc;
+                    lightbox.classList.add('active');
+                    updateNavigationButtons();
+                });
+            });
+
+            // Close lightbox
+            closeButton.addEventListener('click', () => {
+                lightbox.classList.remove('active');
+            });
+
+            // Close on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    lightbox.classList.remove('active');
+                }
+            });
+
+            // Navigation functions
+            function updateNavigationButtons() {
+                prevButton.disabled = currentImageIndex === 0;
+                nextButton.disabled = currentImageIndex === galleryItems.length - 1;
+            }
+
+            function showImage(index) {
+                const fullImageSrc = galleryItems[index].querySelector('img').getAttribute('data-full');
+                lightboxImage.src = fullImageSrc;
+                currentImageIndex = index;
+                updateNavigationButtons();
+            }
+
+            // Previous image
+            prevButton.addEventListener('click', () => {
+                if (currentImageIndex > 0) {
+                    showImage(currentImageIndex - 1);
+                }
+            });
+
+            // Next image
+            nextButton.addEventListener('click', () => {
+                if (currentImageIndex < galleryItems.length - 1) {
+                    showImage(currentImageIndex + 1);
+                }
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('active')) return;
+
+                if (e.key === 'ArrowLeft' && currentImageIndex > 0) {
+                    showImage(currentImageIndex - 1);
+                } else if (e.key === 'ArrowRight' && currentImageIndex < galleryItems.length - 1) {
+                    showImage(currentImageIndex + 1);
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
