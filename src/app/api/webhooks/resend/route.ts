@@ -32,7 +32,7 @@ export async function POST(req: Request) {
                         <strong>Kime Atıldı:</strong> ${to}
                     </p>
                     <div style="padding-top: 20px;">
-                        ${html ? html : `<p style="white-space: pre-wrap;">${text || 'İçerik bulunamadı.'}</p>`}
+                        ${html ? html : text ? `<p style="white-space: pre-wrap;">${text}</p>` : `<div style="background:#f4f4f4; padding:10px;"><p><strong>Detaylı İçerik (Ham Veri):</strong></p><pre style="white-space: pre-wrap; font-size:10px; max-width: 100%; overflow-x: auto;">${JSON.stringify(eventData, null, 2)}</pre></div>`}
                     </div>
                 </div>
             `,
