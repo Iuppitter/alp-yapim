@@ -3,8 +3,7 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 // Varsayılan olarak formlar ve yönlendirmeler bu adrese düşecek.
-// .env.local içine FORWARDING_EMAIL="kendi_sahsi@gmail.com" eklenmelidir.
-const FORWARD_TO = process.env.FORWARDING_EMAIL || 'alpyapim@gmail.com';
+const FORWARD_TO = process.env.FORWARDING_EMAIL || 'muratcan.akyol739@gmail.com';
 
 export async function POST(req: Request) {
     try {
@@ -15,9 +14,9 @@ export async function POST(req: Request) {
 
         const from = eventData.from || 'Bilinmiyor';
         const to = eventData.to || 'Bilinmiyor';
-        const subject = eventData.subject || 'Konu Yok';
-        const text = eventData.text || '';
-        const html = eventData.html || '';
+        const subject = eventData.subject || 'Konu Belirtilmemiş';
+        const text = eventData.text || eventData.text_body || eventData.body || '';
+        const html = eventData.html || eventData.html_body || '';
 
         // Gelen maili yakalayıp kişisel maile 'info@alp-yapim.com' kimliğiyle paslamak
         const { data, error } = await resend.emails.send({
