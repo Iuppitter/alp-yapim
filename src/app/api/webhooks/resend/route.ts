@@ -10,12 +10,14 @@ export async function POST(req: Request) {
     try {
         const body = await req.json();
 
-        // Resend Inbound Webhook Payload
-        const from = body.from || 'Bilinmiyor';
-        const to = body.to || 'Bilinmiyor';
-        const subject = body.subject || 'Konu Yok';
-        const text = body.text;
-        const html = body.html;
+        // Resend Inbound Webhook Payload is nested inside 'data'
+        const eventData = body.data || body; // Fallback to body in case it's flat
+
+        const from = eventData.from || 'Bilinmiyor';
+        const to = eventData.to || 'Bilinmiyor';
+        const subject = eventData.subject || 'Konu Yok';
+        const text = eventData.text || '';
+        const html = eventData.html || '';
 
         // Gelen maili yakalayıp kişisel maile 'info@alp-yapim.com' kimliğiyle paslamak
         const { data, error } = await resend.emails.send({

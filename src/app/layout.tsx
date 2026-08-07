@@ -18,10 +18,18 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'ALP YAPIM | Portfolyo',
         description: 'Mimari ve Endüstriyel Görüntüleme Hizmetleri.',
-        url: 'https://alpyapim.com',
+        url: 'https://alp-yapim.com',
         siteName: 'ALP YAPIM',
         locale: 'tr_TR',
         type: 'website',
+        images: [
+            {
+                url: 'https://alp-yapim.com/images/hero.webp',
+                width: 1920,
+                height: 1080,
+                alt: 'Alp Yapım Hero Image',
+            }
+        ]
     },
     twitter: {
         card: "summary_large_image",
