@@ -15,8 +15,23 @@ export async function POST(req: Request) {
         const from = eventData.from || 'Bilinmiyor';
         const to = eventData.to || 'Bilinmiyor';
         const subject = eventData.subject || 'Konu Belirtilmemiş';
-        const text = eventData.text || eventData.text_body || eventData.body || '';
-        const html = eventData.html || eventData.html_body || '';
+        const emailId = eventData.email_id;
+
+        let text = eventData.text || eventData.text_body || eventData.body || '';
+        let html = eventData.html || eventData.html_body || '';
+
+        // Eger payload icinde text veya html yoksa, email_id ile API'den direkt cekmeyi deneyelim (Resend Bug Bypass)
+        if (!text && !html && emailId) {
+            try {
+                const fetched = await resend.emails.get(emailId);
+                if (fetched && fetched.data) {
+                    text = fetched.data.text || text;
+                    html = fetched.data.html || html;
+                }
+            } catch (ignored) {
+                // Sessizce gec
+            }
+        }
 
         // Gelen maili yakalayıp kişisel maile 'info@alp-yapim.com' kimliğiyle paslamak
         const { data, error } = await resend.emails.send({
@@ -31,7 +46,7 @@ export async function POST(req: Request) {
                         <strong>Kime Atıldı:</strong> ${to}
                     </p>
                     <div style="padding-top: 20px;">
-                        ${html ? html : text ? `<p style="white-space: pre-wrap;">${text}</p>` : `<div style="background:#f4f4f4; padding:10px;"><p><strong>Detaylı İçerik (Ham Veri):</strong></p><pre style="white-space: pre-wrap; font-size:10px; max-width: 100%; overflow-x: auto;">${JSON.stringify(eventData, null, 2)}</pre></div>`}
+                        ${html ? html : text ? `<p style="white-space: pre-wrap;">${text}</p>` : `<div style="background:#f4f4f4; padding:10px;"><p><strong>Detaylı İçerik (Ham Veri):</strong></p><pre style="white-space: pre-wrap; font-size:10px; max-width: 100%; overflow-x: auto;">${JSON.stringify({ ...body, notice: "API ile cekim denendi ama bos dundu." }, null, 2)}</pre></div>`}
                     </div>
                 </div>
             `,
