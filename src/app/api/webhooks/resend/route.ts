@@ -23,7 +23,7 @@ export async function POST(req: Request) {
         // We MUST fetch it via the Receiving API using email_id.
         if (emailId) {
             try {
-                const response = await fetch(`https://api.resend.com/emails/${emailId}`, {
+                const response = await fetch(`https://api.resend.com/emails/receiving/${emailId}`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
