@@ -59,7 +59,7 @@ export function Contact() {
                                         <p className="text-[10px] tracking-[0.2em] uppercase text-muted mb-1">
                                             E-posta
                                         </p>
-                                        <p className="text-sm text-foreground">info@alpyapim.com</p>
+                                        <p className="text-sm text-foreground">info@alp-yapim.com</p>
                                     </div>
                                 </div>
                             </RevealOnScroll>
@@ -73,7 +73,7 @@ export function Contact() {
                                         <p className="text-[10px] tracking-[0.2em] uppercase text-muted mb-1">
                                             Telefon
                                         </p>
-                                        <p className="text-sm text-foreground">+90 (555) 123 4567</p>
+                                        <p className="text-sm text-foreground">+90 507 429 97 27</p>
                                     </div>
                                 </div>
                             </RevealOnScroll>
