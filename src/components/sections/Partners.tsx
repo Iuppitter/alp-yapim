@@ -46,6 +46,7 @@ export function Partners({ partners = [] }: { partners?: Partner[] }) {
                                             src={urlFor(partner.logo).url()}
                                             alt={partner.title}
                                             fill
+                                            sizes="200px"
                                             className="object-contain"
                                         />
                                     </div>
