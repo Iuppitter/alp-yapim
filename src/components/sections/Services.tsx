@@ -16,7 +16,7 @@ const services: Service[] = [
         icon: <Plane size={28} strokeWidth={1.2} />,
         title: "Drone Çekimi",
         description:
-            "Yuksek çözünürlüklü hava görüntüleme ile projelerinizi kuş bakışı perspektifinden belgeleyin. 4K video ve fotoğraf.",
+            "Yüksek çözünürlüklü hava görüntüleme ile projelerinizi kuş bakışı perspektifinden belgeleyin. 4K video ve fotoğraf.",
         stat: "4K",
         statLabel: "Ultra HD",
     },
@@ -24,25 +24,25 @@ const services: Service[] = [
         icon: <Building2 size={28} strokeWidth={1.2} />,
         title: "Mimari Fotoğraf",
         description:
-            "Bina dis cepheleri, iç mekanlar ve mimari detaylarin profesyonel fotoğraflanması.",
+            "Bina dış cepheleri, iç mekanlar ve mimari detayların profesyonel fotoğraflanması.",
         stat: "360",
-        statLabel: "Derece Goruntu",
+        statLabel: "Derece Görüntü",
     },
     {
         icon: <Camera size={28} strokeWidth={1.2} />,
-        title: "Endüstriyel Cekimler",
+        title: "Endüstriyel Çekimler",
         description:
-            "Fabrikalar, enerji santralleri ve endüstriyel tesislerin kapsamli gorsel dokumantasyonu.",
+            "Fabrikalar, enerji santralleri ve endüstriyel tesislerin kapsamlı görsel dokümantasyonu.",
         stat: "50+",
         statLabel: "Tamamlanan Proje",
     },
     {
         icon: <Box size={28} strokeWidth={1.2} />,
-        title: "Nesne Fotoğrafciligi",
+        title: "Ürün Fotoğrafçılığı",
         description:
-            "Urunler, ekipmanlar ve teknik parçaların stüdyo kalitesinde profesyonel çekimi.",
+            "Ürünler, ekipmanlar ve teknik parçaların stüdyo kalitesinde profesyonel çekimi.",
         stat: "PRO",
-        statLabel: "Studyo Kalite",
+        statLabel: "Stüdyo Kalite",
     },
 ];
 
@@ -71,7 +71,7 @@ export function Services() {
                 <RevealOnScroll>
                     <div className="text-center mb-20">
                         <p className="text-xs tracking-[0.3em] uppercase text-muted mb-3">
-                            Uzmanlik Alanlarimiz
+                            Uzmanlık Alanlarımız
                         </p>
                         <h2 className="font-heading text-3xl md:text-5xl font-normal tracking-tight">
                             Hizmetler
