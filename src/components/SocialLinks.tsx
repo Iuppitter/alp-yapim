@@ -125,9 +125,9 @@ export function SocialLinks({ settings }: SocialLinksProps) {
             {modalOpen && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center bg-background/90 backdrop-blur-sm p-4">
                     <div className="bg-surface border border-border max-w-sm w-full p-8 flex flex-col items-start gap-4">
-                        <h3 className="font-heading text-2xl uppercase tracking-tighter text-foreground">Hesap Bulunamadı</h3>
+                        <h3 className="font-heading text-2xl uppercase tracking-tighter text-foreground">Çok Yakında</h3>
                         <p className="text-sm text-foreground/80 leading-relaxed font-sans">
-                            <strong>{platformName}</strong> sosyal medya adresimiz henüz eklenmemiştir. Sanity CMS panelinden bir bağlantı eklediğinizde bu link otomatik olarak aktif olacaktır.
+                            <strong>{platformName}</strong> hesabımız kısa süre içerisinde aktif edilecektir.
                         </p>
                         <button
                             onClick={() => setModalOpen(false)}
