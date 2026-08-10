@@ -77,10 +77,3 @@ body {
 @utility text-balance {
     text-wrap: balance;
 }
-
-/* Base Animation Classes */
-.reveal {
-    /* Animations disabled per request */
-}
-
-.reveal.visible {}

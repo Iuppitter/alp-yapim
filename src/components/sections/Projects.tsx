@@ -119,6 +119,7 @@ export function Projects({ initialProjects = [] }: { initialProjects?: Project[]
                                     <img
                                         src={project.coverImage ? urlFor(project.coverImage).width(800).url() : ""}
                                         alt={project.title}
+                                        loading="lazy"
                                         className="w-full h-auto block object-cover"
                                     />
                                 </div>

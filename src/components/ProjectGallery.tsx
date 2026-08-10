@@ -39,6 +39,7 @@ export function ProjectGallery({ images, title }: ProjectGalleryProps) {
                             <img
                                 src={thumbUrl}
                                 alt={`${title} - Fotoğraf ${i + 1}`}
+                                loading="lazy"
                                 className="w-full h-auto block"
                             />
                         </div>

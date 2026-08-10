@@ -9,7 +9,7 @@ import { Header } from "@/components/Header";
 
 import { client } from "@/lib/sanity";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export default async function Home() {
     const projectsQuery = `*[_type == "project"] | order(_createdAt desc) {

@@ -43,7 +43,7 @@ export function Partners({ partners = [] }: { partners?: Partner[] }) {
                                 return (
                                     <div key={`${partner._id}-${index}`} className="relative h-14 md:h-16 w-36 md:w-48 flex-shrink-0 mx-2 md:mx-4">
                                         <Image
-                                            src={urlFor(partner.logo).url()}
+                                            src={urlFor(partner.logo).width(400).format('webp').url()}
                                             alt={partner.title}
                                             fill
                                             sizes="200px"

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 // Configure local GR Read One font
@@ -49,6 +50,7 @@ export default function RootLayout({
             <body className="antialiased selection:bg-foreground/10 selection:text-foreground bg-background text-foreground overflow-x-hidden min-h-screen">
                 {children}
                 <SpeedInsights />
+                <Analytics />
             </body>
         </html>
     );
