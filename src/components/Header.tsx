@@ -38,7 +38,7 @@ export function Header() {
 
     return (
         <>
-            <header className={`fixed top-0 left-0 right-0 z-50 pointer-events-none ${scrolled ? 'mix-blend-difference' : 'drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]'}`}>
+            <header className="fixed top-0 left-0 right-0 z-50 mix-blend-difference pointer-events-none">
                 <div className="w-full px-2 pointer-events-auto">
                     <div className="flex flex-wrap items-center justify-between gap-4 h-auto pt-2 pb-4">
                         {/* Logo */}

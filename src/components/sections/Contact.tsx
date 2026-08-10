@@ -51,43 +51,43 @@ export function Contact() {
                         {/* Contact Info Cards */}
                         <div className="space-y-4">
                             <RevealOnScroll delay={100}>
-                                <div className="flex items-center gap-4 p-5 border border-border hover:border-foreground/30 transition-colors duration-300">
-                                    <div className="w-10 h-10 flex items-center justify-center border border-border text-foreground">
-                                        <MailIcon size={16} />
+                                <div className="flex items-center gap-6 p-5 border border-border hover:border-foreground/30 transition-colors duration-300">
+                                    <div className="flex-shrink-0 flex items-center justify-center text-foreground">
+                                        <MailIcon size={28} strokeWidth={1.5} />
                                     </div>
                                     <div>
                                         <p className="text-[10px] tracking-[0.2em] uppercase text-muted mb-1">
                                             E-posta
                                         </p>
-                                        <p className="text-sm text-foreground">info@alp-yapim.com</p>
+                                        <p className="text-sm md:text-base text-foreground">info@alp-yapim.com</p>
                                     </div>
                                 </div>
                             </RevealOnScroll>
 
                             <RevealOnScroll delay={200}>
-                                <div className="flex items-center gap-4 p-5 border border-border hover:border-foreground/30 transition-colors duration-300">
-                                    <div className="w-10 h-10 flex items-center justify-center border border-border text-foreground">
-                                        <Phone size={16} />
+                                <div className="flex items-center gap-6 p-5 border border-border hover:border-foreground/30 transition-colors duration-300">
+                                    <div className="flex-shrink-0 flex items-center justify-center text-foreground">
+                                        <Phone size={28} strokeWidth={1.5} />
                                     </div>
                                     <div>
                                         <p className="text-[10px] tracking-[0.2em] uppercase text-muted mb-1">
                                             Telefon
                                         </p>
-                                        <p className="text-sm text-foreground">+90 507 429 97 27</p>
+                                        <p className="text-sm md:text-base text-foreground">+90 507 429 97 27</p>
                                     </div>
                                 </div>
                             </RevealOnScroll>
 
                             <RevealOnScroll delay={300}>
-                                <div className="flex items-center gap-4 p-5 border border-border hover:border-foreground/30 transition-colors duration-300">
-                                    <div className="w-10 h-10 flex items-center justify-center border border-border text-foreground">
-                                        <MapPin size={16} />
+                                <div className="flex items-center gap-6 p-5 border border-border hover:border-foreground/30 transition-colors duration-300">
+                                    <div className="flex-shrink-0 flex items-center justify-center text-foreground">
+                                        <MapPin size={28} strokeWidth={1.5} />
                                     </div>
                                     <div>
                                         <p className="text-[10px] tracking-[0.2em] uppercase text-muted mb-1">
                                             Konum
                                         </p>
-                                        <p className="text-sm text-foreground">Istanbul, Türkiye</p>
+                                        <p className="text-sm md:text-base text-foreground">Istanbul, Türkiye</p>
                                     </div>
                                 </div>
                             </RevealOnScroll>
