@@ -24,11 +24,27 @@ export const siteSettings = defineType({
         }),
         defineField({
             name: "heroImage",
-            title: "Hero Görseli",
+            title: "Hero Görseli (Poster / Fallback)",
             type: "image",
             options: {
                 hotspot: true,
             },
+            description: "Video yüklenene kadar veya mobilde gösterilecek kapak görseli.",
+        }),
+        defineField({
+            name: "heroVideo",
+            title: "Hero Videosu (Dosya Yükleme)",
+            type: "file",
+            options: {
+                accept: "video/mp4,video/webm",
+            },
+            description: "MP4 veya WebM formatında optimize edilmiş arka plan videosu yükleyin.",
+        }),
+        defineField({
+            name: "heroVideoUrl",
+            title: "Hero Videosu (Harici CDN / URL)",
+            type: "url",
+            description: "Dosya yüklemek yerine harici bir CDN (Cloudflare R2, Vercel Blob vb.) bağlantısı girmek isterseniz.",
         }),
         defineField({
             name: "aboutText",

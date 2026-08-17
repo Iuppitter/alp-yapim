@@ -47,6 +47,8 @@ export const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0] {
   tagline,
   description,
   heroImage,
+  "heroVideoFileUrl": heroVideo.asset->url,
+  heroVideoUrl,
   aboutText,
   email,
   phone,

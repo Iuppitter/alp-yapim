@@ -7,7 +7,7 @@ import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
-import { client } from "@/lib/sanity";
+import { client, SITE_SETTINGS_QUERY } from "@/lib/sanity";
 
 export const revalidate = 60;
 
@@ -27,9 +27,10 @@ export default async function Home() {
       logo
   }`;
 
-    const [initialProjects, partners] = await Promise.all([
+    const [initialProjects, partners, settings] = await Promise.all([
         client.fetch(projectsQuery),
-        client.fetch(partnersQuery)
+        client.fetch(partnersQuery),
+        client.fetch(SITE_SETTINGS_QUERY)
     ]);
 
     return (
@@ -38,7 +39,7 @@ export default async function Home() {
 
             <main className="flex-1 w-full">
                 {/* 1. Hero Section */}
-                <Hero />
+                <Hero settings={settings} />
 
                 {/* 2. Partners Marquee (Trust Bar) */}
                 <Partners partners={partners} />
