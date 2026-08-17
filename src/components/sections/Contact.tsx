@@ -6,6 +6,7 @@ import { MapPin, Phone, Mail as MailIcon, Send, Loader2 } from "lucide-react";
 
 interface ContactProps {
     settings?: {
+        phoneList?: string[];
         phone?: string;
         email?: string;
     };
@@ -80,7 +81,17 @@ export function Contact({ settings }: ContactProps) {
                                         <p className="text-[10px] tracking-[0.2em] uppercase text-muted mb-1">
                                             Telefon
                                         </p>
-                                        <p className="text-sm md:text-base text-foreground">{settings?.phone || "+90 507 429 97 27"}</p>
+                                        {settings?.phoneList && settings.phoneList.length > 0 ? (
+                                            settings.phoneList.map((p, idx) => (
+                                                <p key={idx} className="text-sm md:text-base text-foreground mb-1 last:mb-0">
+                                                    {p}
+                                                </p>
+                                            ))
+                                        ) : (
+                                            <p className="text-sm md:text-base text-foreground">
+                                                {settings?.phone || "+90 507 429 97 27"}
+                                            </p>
+                                        )}
                                     </div>
                                 </div>
                             </RevealOnScroll>

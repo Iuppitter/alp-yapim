@@ -58,9 +58,11 @@ export const siteSettings = defineType({
             type: "string",
         }),
         defineField({
-            name: "phone",
-            title: "Telefon",
-            type: "string",
+            name: "phoneList",
+            title: "Telefon Numaraları",
+            type: "array",
+            of: [{ type: "string" }],
+            description: "Birden fazla telefon numarası ekleyebilirsiniz (Yeni Ekle diyerek).",
         }),
         defineField({
             name: "instagram",
