@@ -45,12 +45,7 @@ export function Hero({ settings }: HeroProps) {
             {/* Subtle dark gradient overlay for text legibility */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
 
-            {/* Top-left: Company name, small and quiet */}
-            <div className="absolute top-0 left-0 w-full pt-6 px-4 md:px-8 z-10">
-                <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-white/70">
-                    EST. 2024
-                </span>
-            </div>
+
 
             {/* Bottom content block */}
             <div className="absolute bottom-0 left-0 w-full px-4 md:px-8 pb-10 md:pb-16 z-10">

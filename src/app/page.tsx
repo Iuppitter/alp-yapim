@@ -51,7 +51,7 @@ export default async function Home() {
                 <Services />
 
                 {/* 4. Contact Section */}
-                <Contact />
+                <Contact settings={settings} />
             </main>
 
             {/* Footer */}
