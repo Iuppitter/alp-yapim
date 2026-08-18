@@ -24,7 +24,8 @@ export default async function Home() {
     const partnersQuery = `*[_type == "partner"] | order(_createdAt desc) {
       _id,
       title,
-      logo
+      logo,
+      url
   }`;
 
     const [initialProjects, partners, settings] = await Promise.all([

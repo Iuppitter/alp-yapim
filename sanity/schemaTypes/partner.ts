@@ -21,5 +21,11 @@ export const partner = defineType({
             validation: (Rule) => Rule.required(),
             description: 'Zemin rengi olmayan şeffaf (PNG/SVG) marka logolarını buraya yükleyin.',
         }),
+        defineField({
+            name: 'url',
+            title: 'Web Sitesi Linki',
+            type: 'url',
+            description: 'Logoya tıklandığında gidilecek adres (opsiyonel).',
+        }),
     ],
 })

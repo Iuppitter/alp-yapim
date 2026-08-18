@@ -9,6 +9,7 @@ interface Partner {
     title: string;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     logo: any;
+    url?: string;
 }
 
 export function Partners({ partners = [] }: { partners?: Partner[] }) {
@@ -37,11 +38,20 @@ export function Partners({ partners = [] }: { partners?: Partner[] }) {
 
                     {/* Marquee Track Container */}
                     <div className="w-full flex">
-                        <div className="flex shrink-0 animate-[marquee_100s_linear_infinite] items-center gap-8 md:gap-14 w-max px-8">
+                        <div className="flex shrink-0 animate-[marquee_100s_linear_infinite] hover:[animation-play-state:paused] items-center gap-8 md:gap-14 w-max px-8">
                             {scrollItems.map((partner, index) => {
                                 if (!partner.logo) return null;
+                                
+                                const Wrapper = partner.url ? "a" : "div";
+                                
                                 return (
-                                    <div key={`${partner._id}-${index}`} className="relative h-14 md:h-16 w-36 md:w-48 flex-shrink-0 mx-2 md:mx-4">
+                                    <Wrapper
+                                        key={`${partner._id}-${index}`}
+                                        href={partner.url || undefined}
+                                        target={partner.url ? "_blank" : undefined}
+                                        rel={partner.url ? "noopener noreferrer" : undefined}
+                                        className="relative h-14 md:h-16 w-36 md:w-48 flex-shrink-0 mx-2 md:mx-4 transition-transform duration-300 hover:scale-110 cursor-pointer"
+                                    >
                                         <Image
                                             src={urlFor(partner.logo).width(400).format('webp').url()}
                                             alt={partner.title}
@@ -49,7 +59,7 @@ export function Partners({ partners = [] }: { partners?: Partner[] }) {
                                             sizes="200px"
                                             className="object-contain"
                                         />
-                                    </div>
+                                    </Wrapper>
                                 );
                             })}
                         </div>
