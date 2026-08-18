@@ -1,11 +1,11 @@
-import { client } from "@/lib/sanity";
+import { client, SITE_SETTINGS_QUERY } from "@/lib/sanity";
 import { SocialLinks } from "./SocialLinks";
 
 export async function Footer() {
     const currentYear = new Date().getFullYear();
 
     // Fetch site settings from CMS natively (Server Component)
-    const siteSettings = await client.fetch(`*[_type == "siteSettings"][0]`);
+    const siteSettings = await client.fetch(SITE_SETTINGS_QUERY);
 
     return (
         <footer className="border-t border-border bg-background">
@@ -14,11 +14,10 @@ export async function Footer() {
                     {/* Brand */}
                     <div>
                         <h3 className="text-lg font-bold tracking-[0.2em] uppercase mb-4">
-                            ALP YAPIM
+                            {siteSettings?.title || "ALP YAPIM"}
                         </h3>
                         <p className="text-sm text-muted leading-relaxed max-w-xs">
-                            Profesyonel drone çekimi, mimari fotoğraf ve endüstriyel
-                            görüntüleme hizmetleri.
+                            {siteSettings?.description || "Profesyonel drone cekimi, mimari fotograf ve endustriyel goruntuleme hizmetleri."}
                         </p>
                     </div>
 

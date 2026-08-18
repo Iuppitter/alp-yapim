@@ -2,7 +2,6 @@
 
 import { urlFor } from "@/lib/sanity";
 import Image from "next/image";
-import { RevealOnScroll } from "@/components/RevealOnScroll";
 
 interface Partner {
     _id: string;
@@ -29,43 +28,41 @@ export function Partners({ partners = [] }: { partners?: Partner[] }) {
                 </h3>
             </div>
 
-            <RevealOnScroll>
-                <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center">
 
-                    {/* Gradient Fades for Smooth Edges */}
-                    <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none"></div>
-                    <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none"></div>
+                {/* Gradient Fades for Smooth Edges */}
+                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none"></div>
+                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none"></div>
 
-                    {/* Marquee Track Container */}
-                    <div className="w-full flex">
-                        <div className="flex shrink-0 animate-[marquee_100s_linear_infinite] hover:[animation-play-state:paused] items-center gap-8 md:gap-14 w-max px-8">
-                            {scrollItems.map((partner, index) => {
-                                if (!partner.logo) return null;
-                                
-                                const Wrapper = partner.url ? "a" : "div";
-                                
-                                return (
-                                    <Wrapper
-                                        key={`${partner._id}-${index}`}
-                                        href={partner.url || undefined}
-                                        target={partner.url ? "_blank" : undefined}
-                                        rel={partner.url ? "noopener noreferrer" : undefined}
-                                        className="relative h-16 md:h-24 w-40 md:w-64 flex-shrink-0 mx-2 md:mx-4 transition-transform duration-300 hover:scale-110 cursor-pointer"
-                                    >
-                                        <Image
-                                            src={urlFor(partner.logo).width(400).format('webp').url()}
-                                            alt={partner.title}
-                                            fill
-                                            sizes="200px"
-                                            className="object-contain"
-                                        />
-                                    </Wrapper>
-                                );
-                            })}
-                        </div>
+                {/* Marquee Track Container */}
+                <div className="w-full flex">
+                    <div className="flex shrink-0 animate-[marquee_100s_linear_infinite] hover:[animation-play-state:paused] items-center gap-8 md:gap-14 w-max px-8">
+                        {scrollItems.map((partner, index) => {
+                            if (!partner.logo) return null;
+                            
+                            const Wrapper = partner.url ? "a" : "div";
+                            
+                            return (
+                                <Wrapper
+                                    key={`${partner._id}-${index}`}
+                                    href={partner.url || undefined}
+                                    target={partner.url ? "_blank" : undefined}
+                                    rel={partner.url ? "noopener noreferrer" : undefined}
+                                    className="relative h-16 md:h-24 w-40 md:w-64 flex-shrink-0 mx-2 md:mx-4 transition-transform duration-300 hover:scale-110 cursor-pointer"
+                                >
+                                    <Image
+                                        src={urlFor(partner.logo).width(400).format('webp').url()}
+                                        alt={partner.title}
+                                        fill
+                                        sizes="200px"
+                                        className="object-contain"
+                                    />
+                                </Wrapper>
+                            );
+                        })}
                     </div>
                 </div>
-            </RevealOnScroll>
+            </div>
         </section>
     );
 }

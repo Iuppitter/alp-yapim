@@ -64,6 +64,7 @@ interface SocialLinksProps {
         instagram?: string;
         youtube?: string;
         linkedin?: string;
+        email?: string;
     } | null;
 }
 
@@ -113,7 +114,7 @@ export function SocialLinks({ settings }: SocialLinksProps) {
                     <LinkedinIcon size={16} />
                 </a>
                 <a
-                    href="mailto:info@alp-yapim.com"
+                    href={`mailto:${settings?.email || "info@alp-yapim.com"}`}
                     className="w-10 h-10 border border-border rounded-full flex items-center justify-center text-muted hover:text-foreground hover:border-foreground transition-all duration-300"
                     aria-label="E-posta"
                 >

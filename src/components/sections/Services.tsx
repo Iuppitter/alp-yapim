@@ -1,6 +1,5 @@
 "use client";
 
-import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { Camera, Plane, Building2, Box } from "lucide-react";
 
 interface Service {
@@ -68,25 +67,23 @@ export function Services() {
         <section id="hizmetler" className="py-24 md:py-32 bg-surface">
             <div className="w-full px-2">
                 {/* Section Header */}
-                <RevealOnScroll>
-                    <div className="text-center mb-20">
-                        <p className="text-xs tracking-[0.3em] uppercase text-muted mb-3">
-                            Uzmanlık Alanlarımız
-                        </p>
-                        <h2 className="font-heading text-3xl md:text-5xl font-normal tracking-tight">
-                            Hizmetler
-                        </h2>
-                    </div>
-                </RevealOnScroll>
+                <div className="text-center mb-20">
+                    <p className="text-xs tracking-[0.3em] uppercase text-muted mb-3">
+                        Uzmanlik Alanlarimiz
+                    </p>
+                    <h2 className="font-heading text-3xl md:text-5xl font-normal tracking-tight">
+                        Hizmetler
+                    </h2>
+                </div>
 
                 {/* Services Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
-                    {services.map((service, index) => (
-                        <RevealOnScroll key={service.title} delay={index * 120}>
-                            <div
-                                onClick={() => handleServiceClick(service.title)}
-                                className="bg-surface p-8 md:p-10 h-full group hover:bg-surface-hover transition-colors duration-500 cursor-pointer"
-                            >
+                    {services.map((service) => (
+                        <div
+                            key={service.title}
+                            onClick={() => handleServiceClick(service.title)}
+                            className="bg-surface p-8 md:p-10 h-full group hover:bg-surface-hover transition-colors duration-500 cursor-pointer"
+                        >
                                 {/* Icon */}
                                 <div className="text-foreground mb-6 group-hover:scale-110 transition-transform duration-500">
                                     {service.icon}
@@ -111,8 +108,7 @@ export function Services() {
                                         {service.statLabel}
                                     </p>
                                 </div>
-                            </div>
-                        </RevealOnScroll>
+                        </div>
                     ))}
                 </div>
             </div>

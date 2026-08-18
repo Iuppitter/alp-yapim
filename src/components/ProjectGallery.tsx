@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
 import { X } from "lucide-react";
 
@@ -17,35 +16,31 @@ export function ProjectGallery({ images, title }: ProjectGalleryProps) {
     if (!images || images.length === 0) {
         return (
             <div className="py-20 text-center text-[10px] uppercase font-bold tracking-widest text-muted border border-dashed border-border mt-8">
-                BU PROJE İÇİN HENÜZ GALERİ FOTOĞRAFI YÜKLENMEMİŞ.
+                BU PROJE ICIN HENUZ GALERI FOTOGRAFI YUKLENMEMIS.
             </div>
         );
     }
 
     return (
         <>
-            <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
+            <div className="columns-1 md:columns-2 lg:columns-3 gap-4">
                 {images.map((img, i) => {
-                    // Generate full-res URL directly directly for zoom
                     const fullUrl = urlFor(img).url();
-                    // Generate specialized thumbnail for rendering smoothly
-                    const thumbUrl = urlFor(img).width(1200).url();
+                    const thumbUrl = urlFor(img).width(1200).format('webp').url();
 
                     return (
                         <div
                             key={i}
                             onClick={() => setSelectedImage(fullUrl)}
-                            className="break-inside-avoid w-full bg-surface border border-transparent hover:border-foreground cursor-pointer transition-colors duration-150 p-2 md:p-3 relative"
+                            className="break-inside-avoid mb-4 w-full bg-surface border border-transparent hover:border-foreground cursor-pointer transition-colors duration-150 p-2 md:p-3"
                         >
-                            <div className="relative w-full aspect-[4/3]">
-                                <Image
-                                    src={thumbUrl}
-                                    alt={`${title} - Fotograf ${i + 1}`}
-                                    fill
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                    className="object-cover"
-                                />
-                            </div>
+                            <img
+                                src={thumbUrl}
+                                alt={`${title} - Fotograf ${i + 1}`}
+                                loading="lazy"
+                                decoding="async"
+                                className="w-full h-auto block"
+                            />
                         </div>
                     );
                 })}

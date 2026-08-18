@@ -1,8 +1,6 @@
 "use client";
 
-import Image from "next/image";
 import { useState, useEffect, useMemo } from "react";
-import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { urlFor } from "@/lib/sanity";
 
 interface Project {
@@ -25,15 +23,11 @@ export function Projects({ initialProjects = [] }: { initialProjects?: Project[]
     );
 
     useEffect(() => {
-        // Listen for requests from Services or other links
         const handleCategorySelect = (e: CustomEvent) => {
             const requestedCategory = e.detail as string;
             const reqLower = requestedCategory.toLowerCase();
 
-            // First try exact match
             const perfectMatch = dynamicCategories.find(c => c.toLowerCase() === reqLower);
-
-            // Then try partial match (e.g. "Mimari Fotoğraf" matching "Mimari")
             const partialMatch = dynamicCategories.find(c => {
                 const catLower = c.toLowerCase();
                 return catLower.includes(reqLower) || reqLower.includes(catLower);
@@ -58,50 +52,44 @@ export function Projects({ initialProjects = [] }: { initialProjects?: Project[]
         <section id="projeler" className="py-24 md:py-32">
             <div className="w-full px-2">
                 {/* Section Header */}
-                <RevealOnScroll>
-                    <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-16">
-                        <div>
-                            <p className="text-xs tracking-[0.3em] uppercase text-muted mb-3">
-                                Portfolyo
-                            </p>
-                            <h2 className="font-heading text-3xl md:text-5xl font-normal tracking-tight">
-                                Projeler
-                            </h2>
-                        </div>
-                        <p className="text-sm text-muted max-w-sm leading-relaxed">
-                            Endüstriyel tesislerden mimari yapılara, enerji santrallerinden
-                            ulaşım projelerine kadar geniş bir yelpazede çalışıyoruz.
+                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-16">
+                    <div>
+                        <p className="text-xs tracking-[0.3em] uppercase text-muted mb-3">
+                            Portfolyo
                         </p>
+                        <h2 className="font-heading text-3xl md:text-5xl font-normal tracking-tight">
+                            Projeler
+                        </h2>
                     </div>
-                </RevealOnScroll>
+                    <p className="text-sm text-muted max-w-sm leading-relaxed">
+                        Endüstriyel tesislerden mimari yapılara, enerji santrallerinden
+                        ulaşım projelerine kadar geniş bir yelpazede çalışıyoruz.
+                    </p>
+                </div>
 
                 {/* Filter Menu */}
-                <RevealOnScroll delay={100}>
-                    <div className="flex flex-wrap items-center gap-2 md:gap-6 mb-12">
-                        {dynamicCategories.map((category) => (
-                            <button
-                                key={category}
-                                onClick={() => setActiveCategory(category)}
-                                className={`text-[11px] tracking-[0.15em] uppercase px-4 py-2 transition-all duration-300 border rounded-full ${activeCategory === category
-                                    ? "bg-foreground text-background border-foreground"
-                                    : "bg-transparent text-muted border-border hover:border-foreground hover:text-foreground"
-                                    }`}
-                            >
-                                {category}
-                            </button>
-                        ))}
-                    </div>
-                </RevealOnScroll>
+                <div className="flex flex-wrap items-center gap-2 md:gap-6 mb-12">
+                    {dynamicCategories.map((category) => (
+                        <button
+                            key={category}
+                            onClick={() => setActiveCategory(category)}
+                            className={`text-[11px] tracking-[0.15em] uppercase px-4 py-2 transition-all duration-300 border rounded-full ${activeCategory === category
+                                ? "bg-foreground text-background border-foreground"
+                                : "bg-transparent text-muted border-border hover:border-foreground hover:text-foreground"
+                                }`}
+                        >
+                            {category}
+                        </button>
+                    ))}
+                </div>
 
                 {/* Divider */}
-                <RevealOnScroll>
-                    <div className="w-full h-px bg-border mb-12" />
-                </RevealOnScroll>
+                <div className="w-full h-px bg-border mb-12" />
 
                 {/* Project Grid / Masonry Layout */}
-                <div className="columns-1 md:columns-2 gap-4 space-y-4 transition-all duration-500">
-                    {filteredProjects.map((project, index) => (
-                        <RevealOnScroll className="break-inside-avoid mb-4" key={`${activeCategory}-${project._id}`} delay={index * 100}>
+                <div className="columns-1 md:columns-2 gap-4 transition-all duration-500">
+                    {filteredProjects.map((project) => (
+                        <div className="break-inside-avoid mb-4" key={`${activeCategory}-${project._id}`}>
                             <a
                                 href={`/project/${project.slug}`}
                                 className="group block relative cursor-pointer"
@@ -116,18 +104,18 @@ export function Projects({ initialProjects = [] }: { initialProjects?: Project[]
                                     </span>
                                 </div>
 
-                                {/* Image - Native Aspect Ratio */}
-                                <div className="w-full bg-surface relative aspect-[4/3]">
-                                    <Image
-                                        src={project.coverImage ? urlFor(project.coverImage).width(800).url() : ""}
+                                {/* Image - Natural Aspect Ratio for Masonry */}
+                                <div className="w-full bg-surface">
+                                    <img
+                                        src={project.coverImage ? urlFor(project.coverImage).width(800).format('webp').url() : ""}
                                         alt={project.title}
-                                        fill
-                                        sizes="(max-width: 768px) 100vw, 50vw"
-                                        className="object-cover"
+                                        loading="lazy"
+                                        decoding="async"
+                                        className="w-full h-auto block object-cover"
                                     />
                                 </div>
                             </a>
-                        </RevealOnScroll>
+                        </div>
                     ))}
                 </div>
 

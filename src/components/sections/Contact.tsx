@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { MapPin, Phone, Mail as MailIcon, Send, Loader2 } from "lucide-react";
 
 interface ContactProps {
@@ -28,6 +27,7 @@ export function Contact({ settings }: ContactProps) {
             if (res.ok) {
                 setStatus("success");
                 setFormData({ name: "", email: "", subject: "", message: "" });
+                setTimeout(() => setStatus("idle"), 3000);
             } else {
                 setStatus("error");
             }
@@ -41,9 +41,9 @@ export function Contact({ settings }: ContactProps) {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                     {/* Left Side - Info */}
                     <div>
-                        <RevealOnScroll>
+                        <div>
                             <p className="text-xs tracking-[0.3em] uppercase text-muted mb-3">
-                                İletişim
+                                Iletisim
                             </p>
                             <h2 className="font-heading text-3xl md:text-5xl font-normal tracking-tight mb-6">
                                 Projenizi
@@ -51,69 +51,63 @@ export function Contact({ settings }: ContactProps) {
                                 <span>Konusalim</span>
                             </h2>
                             <p className="text-base text-accent/80 leading-relaxed mb-12 max-w-md">
-                                Profesyonel görüntüleme ihtiyaclariniz icin bize ulaşın.
-                                Projenizi birlikte değerlendirelim.
+                                Profesyonel goruntuleme ihtiyaclariniz icin bize ulasin.
+                                Projenizi birlikte degerlendirelim.
                             </p>
-                        </RevealOnScroll>
+                        </div>
 
                         {/* Contact Info Cards */}
                         <div className="space-y-4">
-                            <RevealOnScroll delay={100}>
-                                <div className="flex items-center gap-6 p-5 border border-border hover:border-foreground/30 transition-colors duration-300">
-                                    <div className="flex-shrink-0 flex items-center justify-center text-foreground">
-                                        <MailIcon size={28} strokeWidth={1.5} />
-                                    </div>
-                                    <div>
-                                        <p className="text-[10px] tracking-[0.2em] uppercase text-muted mb-1">
-                                            E-posta
-                                        </p>
-                                        <p className="text-sm md:text-base text-foreground">{settings?.email || "info@alp-yapim.com"}</p>
-                                    </div>
+                            <div className="flex items-center gap-6 p-5 border border-border hover:border-foreground/30 transition-colors duration-300">
+                                <div className="flex-shrink-0 flex items-center justify-center text-foreground">
+                                    <MailIcon size={28} strokeWidth={1.5} />
                                 </div>
-                            </RevealOnScroll>
+                                <div>
+                                    <p className="text-[10px] tracking-[0.2em] uppercase text-muted mb-1">
+                                        E-posta
+                                    </p>
+                                    <p className="text-sm md:text-base text-foreground">{settings?.email || "info@alp-yapim.com"}</p>
+                                </div>
+                            </div>
 
-                            <RevealOnScroll delay={200}>
-                                <div className="flex items-center gap-6 p-5 border border-border hover:border-foreground/30 transition-colors duration-300">
-                                    <div className="flex-shrink-0 flex items-center justify-center text-foreground">
-                                        <Phone size={28} strokeWidth={1.5} />
-                                    </div>
-                                    <div>
-                                        <p className="text-[10px] tracking-[0.2em] uppercase text-muted mb-1">
-                                            Telefon
-                                        </p>
-                                        {settings?.phoneList && settings.phoneList.length > 0 ? (
-                                            settings.phoneList.map((p, idx) => (
-                                                <p key={idx} className="text-sm md:text-base text-foreground mb-1 last:mb-0">
-                                                    {p}
-                                                </p>
-                                            ))
-                                        ) : (
-                                            <p className="text-sm md:text-base text-foreground">
-                                                {settings?.phone || "+90 507 429 97 27"}
+                            <div className="flex items-center gap-6 p-5 border border-border hover:border-foreground/30 transition-colors duration-300">
+                                <div className="flex-shrink-0 flex items-center justify-center text-foreground">
+                                    <Phone size={28} strokeWidth={1.5} />
+                                </div>
+                                <div>
+                                    <p className="text-[10px] tracking-[0.2em] uppercase text-muted mb-1">
+                                        Telefon
+                                    </p>
+                                    {settings?.phoneList && settings.phoneList.length > 0 ? (
+                                        settings.phoneList.map((p, idx) => (
+                                            <p key={idx} className="text-sm md:text-base text-foreground mb-1 last:mb-0">
+                                                {p}
                                             </p>
-                                        )}
-                                    </div>
-                                </div>
-                            </RevealOnScroll>
-
-                            <RevealOnScroll delay={300}>
-                                <div className="flex items-center gap-6 p-5 border border-border hover:border-foreground/30 transition-colors duration-300">
-                                    <div className="flex-shrink-0 flex items-center justify-center text-foreground">
-                                        <MapPin size={28} strokeWidth={1.5} />
-                                    </div>
-                                    <div>
-                                        <p className="text-[10px] tracking-[0.2em] uppercase text-muted mb-1">
-                                            Konum
+                                        ))
+                                    ) : (
+                                        <p className="text-sm md:text-base text-foreground">
+                                            {settings?.phone || "+90 507 429 97 27"}
                                         </p>
-                                        <p className="text-sm md:text-base text-foreground">Istanbul, Türkiye</p>
-                                    </div>
+                                    )}
                                 </div>
-                            </RevealOnScroll>
+                            </div>
+
+                            <div className="flex items-center gap-6 p-5 border border-border hover:border-foreground/30 transition-colors duration-300">
+                                <div className="flex-shrink-0 flex items-center justify-center text-foreground">
+                                    <MapPin size={28} strokeWidth={1.5} />
+                                </div>
+                                <div>
+                                    <p className="text-[10px] tracking-[0.2em] uppercase text-muted mb-1">
+                                        Konum
+                                    </p>
+                                    <p className="text-sm md:text-base text-foreground">Istanbul, Türkiye</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     {/* Right Side - Form */}
-                    <RevealOnScroll delay={150}>
+                    <div>
                         <form
                             className="space-y-6"
                             onSubmit={handleSubmit}
@@ -194,7 +188,7 @@ export function Contact({ settings }: ContactProps) {
                                 <p className="text-sm font-semibold text-red-500 uppercase tracking-widest mt-2">Mesaj gönderilirken hata oluştu. Lütfen tekrar deneyin.</p>
                             )}
                         </form>
-                    </RevealOnScroll>
+                    </div>
                 </div>
             </div>
         </section>
