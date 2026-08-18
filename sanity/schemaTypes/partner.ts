@@ -16,7 +16,7 @@ export const partner = defineType({
             title: 'Marka Logosu',
             type: 'image',
             options: {
-                hotspot: false, // SVG/PNG logos don't need hotspots and can cause metadata errors
+                hotspot: true, // Allow cropping black borders and empty spaces
             },
             validation: (Rule) => Rule.required(),
             description: 'Zemin rengi olmayan şeffaf (PNG/SVG) marka logolarını buraya yükleyin.',

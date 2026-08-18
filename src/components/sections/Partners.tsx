@@ -23,7 +23,7 @@ export function Partners({ partners = [] }: { partners?: Partner[] }) {
         <section className="w-full py-8 md:py-12 border-b border-border bg-background overflow-hidden relative">
 
             {/* Gallery Frame Style Title Bar */}
-            <div className="flex items-center justify-between py-2 px-2 bg-transparent text-foreground mb-6 md:mb-8 font-['Helvetica','Arial',sans-serif] w-full">
+            <div className="relative z-20 flex items-center justify-between py-2 px-2 bg-transparent text-foreground mb-6 md:mb-8 font-['Helvetica','Arial',sans-serif] w-full">
                 <h3 className="text-[10px] md:text-xs font-bold uppercase truncate tracking-widest pl-2">
                     İŞ ORTAKLARIMIZ
                 </h3>
@@ -50,7 +50,7 @@ export function Partners({ partners = [] }: { partners?: Partner[] }) {
                                         href={partner.url || undefined}
                                         target={partner.url ? "_blank" : undefined}
                                         rel={partner.url ? "noopener noreferrer" : undefined}
-                                        className="relative h-14 md:h-16 w-36 md:w-48 flex-shrink-0 mx-2 md:mx-4 transition-transform duration-300 hover:scale-110 cursor-pointer"
+                                        className="relative h-16 md:h-24 w-40 md:w-64 flex-shrink-0 mx-2 md:mx-4 transition-transform duration-300 hover:scale-110 cursor-pointer"
                                     >
                                         <Image
                                             src={urlFor(partner.logo).width(400).format('webp').url()}
