@@ -45,13 +45,13 @@ export default async function Home() {
                 {/* 2. Partners Marquee (Trust Bar) */}
                 <Partners partners={partners} />
 
-                {/* 3. Projects Section */}
-                <Projects initialProjects={initialProjects} />
-
                 {/* 3. Services Section */}
                 <Services />
 
-                {/* 4. Contact Section */}
+                {/* 4. Projects Section */}
+                <Projects initialProjects={initialProjects} />
+
+                {/* 5. Contact Section */}
                 <Contact settings={settings} />
             </main>
 
