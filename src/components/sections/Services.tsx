@@ -69,7 +69,7 @@ export function Services() {
                 {/* Section Header */}
                 <div className="text-center mb-20">
                     <p className="text-xs tracking-[0.3em] uppercase text-muted mb-3">
-                        Uzmanlik Alanlarimiz
+                        Uzmanlık Alanlarımız
                     </p>
                     <h2 className="font-heading text-3xl md:text-5xl font-normal tracking-tight">
                         Hizmetler

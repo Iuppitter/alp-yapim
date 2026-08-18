@@ -43,16 +43,16 @@ export function Contact({ settings }: ContactProps) {
                     <div>
                         <div>
                             <p className="text-xs tracking-[0.3em] uppercase text-muted mb-3">
-                                Iletisim
+                                İletişim
                             </p>
                             <h2 className="font-heading text-3xl md:text-5xl font-normal tracking-tight mb-6">
                                 Projenizi
                                 <br />
-                                <span>Konusalim</span>
+                                <span>Konuşalım</span>
                             </h2>
                             <p className="text-base text-accent/80 leading-relaxed mb-12 max-w-md">
-                                Profesyonel goruntuleme ihtiyaclariniz icin bize ulasin.
-                                Projenizi birlikte degerlendirelim.
+                                Profesyonel görüntüleme ihtiyaçlarınız için bize ulaşın.
+                                Projenizi birlikte değerlendirelim.
                             </p>
                         </div>
 

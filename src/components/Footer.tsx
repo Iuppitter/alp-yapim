@@ -17,7 +17,7 @@ export async function Footer() {
                             {siteSettings?.title || "ALP YAPIM"}
                         </h3>
                         <p className="text-sm text-muted leading-relaxed max-w-xs">
-                            {siteSettings?.description || "Profesyonel drone cekimi, mimari fotograf ve endustriyel goruntuleme hizmetleri."}
+                            {siteSettings?.description || "Profesyonel drone çekimi, mimari fotoğraf ve endüstriyel görüntüleme hizmetleri."}
                         </p>
                     </div>
 
