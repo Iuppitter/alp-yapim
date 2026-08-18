@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
 import { X } from "lucide-react";
 
@@ -36,12 +37,15 @@ export function ProjectGallery({ images, title }: ProjectGalleryProps) {
                             onClick={() => setSelectedImage(fullUrl)}
                             className="break-inside-avoid w-full bg-surface border border-transparent hover:border-foreground cursor-pointer transition-colors duration-150 p-2 md:p-3 relative"
                         >
-                            <img
-                                src={thumbUrl}
-                                alt={`${title} - Fotoğraf ${i + 1}`}
-                                loading="lazy"
-                                className="w-full h-auto block"
-                            />
+                            <div className="relative w-full aspect-[4/3]">
+                                <Image
+                                    src={thumbUrl}
+                                    alt={`${title} - Fotograf ${i + 1}`}
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                    className="object-cover"
+                                />
+                            </div>
                         </div>
                     );
                 })}

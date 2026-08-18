@@ -7,30 +7,14 @@ import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
-import { client, SITE_SETTINGS_QUERY } from "@/lib/sanity";
+import { client, SITE_SETTINGS_QUERY, HOME_PROJECTS_QUERY, PARTNERS_QUERY } from "@/lib/sanity";
 
 export const revalidate = 60;
 
 export default async function Home() {
-    const projectsQuery = `*[_type == "project"] | order(_createdAt desc) {
-      _id,
-      title,
-      "slug": slug.current,
-      "category": category->title,
-      "imageCount": count(gallery),
-      coverImage
-  }`;
-
-    const partnersQuery = `*[_type == "partner"] | order(_createdAt desc) {
-      _id,
-      title,
-      logo,
-      url
-  }`;
-
     const [initialProjects, partners, settings] = await Promise.all([
-        client.fetch(projectsQuery),
-        client.fetch(partnersQuery),
+        client.fetch(HOME_PROJECTS_QUERY),
+        client.fetch(PARTNERS_QUERY),
         client.fetch(SITE_SETTINGS_QUERY)
     ]);
 

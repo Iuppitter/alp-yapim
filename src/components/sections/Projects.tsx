@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { urlFor } from "@/lib/sanity";
 
@@ -19,8 +19,10 @@ interface Project {
 export function Projects({ initialProjects = [] }: { initialProjects?: Project[] }) {
     const [activeCategory, setActiveCategory] = useState("Tümü");
 
-    // Dynamically generate categories based on uploaded projects
-    const dynamicCategories = ["Tümü", ...Array.from(new Set(initialProjects.map(p => p.category).filter(Boolean)))];
+    const dynamicCategories = useMemo(() =>
+        ["Tümü", ...Array.from(new Set(initialProjects.map(p => p.category).filter(Boolean)))],
+        [initialProjects]
+    );
 
     useEffect(() => {
         // Listen for requests from Services or other links
@@ -114,13 +116,14 @@ export function Projects({ initialProjects = [] }: { initialProjects?: Project[]
                                     </span>
                                 </div>
 
-                                {/* Image - Native Aspect Ratio (No Crop) */}
-                                <div className="w-full bg-surface">
-                                    <img
+                                {/* Image - Native Aspect Ratio */}
+                                <div className="w-full bg-surface relative aspect-[4/3]">
+                                    <Image
                                         src={project.coverImage ? urlFor(project.coverImage).width(800).url() : ""}
                                         alt={project.title}
-                                        loading="lazy"
-                                        className="w-full h-auto block object-cover"
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                        className="object-cover"
                                     />
                                 </div>
                             </a>

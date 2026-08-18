@@ -64,3 +64,19 @@ export const CATEGORIES_QUERY = `*[_type == "category"] | order(title asc) {
   "slug": slug.current,
   description
 }`;
+
+export const HOME_PROJECTS_QUERY = `*[_type == "project"] | order(_createdAt desc) {
+  _id,
+  title,
+  "slug": slug.current,
+  "category": category->title,
+  "imageCount": count(gallery),
+  coverImage
+}`;
+
+export const PARTNERS_QUERY = `*[_type == "partner"] | order(_createdAt desc) {
+  _id,
+  title,
+  logo,
+  url
+}`;

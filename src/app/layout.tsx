@@ -49,6 +49,25 @@ export default function RootLayout({
         <html lang="tr" className={`${grReadOne.variable} font-sans`}>
             <body className="antialiased selection:bg-foreground/10 selection:text-foreground bg-background text-foreground overflow-x-hidden min-h-screen">
                 {children}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "Organization",
+                            "name": "ALP YAPIM",
+                            "url": "https://alp-yapim.com",
+                            "logo": "https://alp-yapim.com/icon.svg",
+                            "description": "Endustriyel tesisler, mimari yapilar ve buyuk olcekli projeler icin profesyonel drone cekimi ve goruntuleme hizmetleri.",
+                            "address": {
+                                "@type": "PostalAddress",
+                                "addressLocality": "Istanbul",
+                                "addressCountry": "TR"
+                            },
+                            "sameAs": []
+                        }),
+                    }}
+                />
                 <SpeedInsights />
                 <Analytics />
             </body>

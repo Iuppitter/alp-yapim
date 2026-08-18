@@ -9,10 +9,24 @@ import type { Metadata } from "next";
 
 export const revalidate = 60;
 
+const PROJECT_DETAIL_QUERY = `*[_type == "project" && slug.current == $slug][0] {
+    title,
+    description,
+    coverImage,
+    "category": category->title,
+    gallery
+}`;
+
+export async function generateStaticParams() {
+    const slugs = await client.fetch<{ slug: string }[]>(
+        `*[_type == "project"]{ "slug": slug.current }`
+    );
+    return slugs.map((p) => ({ slug: p.slug }));
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
-    const query = `*[_type == "project" && slug.current == $slug][0] { title, description, coverImage }`;
-    const project = await client.fetch(query, { slug });
+    const project = await client.fetch(PROJECT_DETAIL_QUERY, { slug });
 
     if (!project) return {};
 
@@ -32,14 +46,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
-
-    const query = `*[_type == "project" && slug.current == $slug][0] {
-        title,
-        "category": category->title,
-        description,
-        gallery
-    }`;
-    const project = await client.fetch(query, { slug });
+    const project = await client.fetch(PROJECT_DETAIL_QUERY, { slug });
 
     if (!project) notFound();
 
